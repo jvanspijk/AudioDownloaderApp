@@ -33,14 +33,12 @@ class Downloader:
                 query = url
             else:
                 query = f"ytsearch:{artist} {song_name} audio"
-
             try:
                 ydl.download([query])
                 result = "Download completed."
                 self.add_metadata(filename, artist, song_name, preferred_format)
             except Exception as e:               
                 result = f"Error while downloading\n {query}\n{e}"
-
         return result
 
     # Only works for mp3 and flac files
@@ -55,10 +53,7 @@ class Downloader:
             audiofile = FLAC(file_path)
             audiofile['title'] = song_name
             audiofile['artist'] = artist
-            audiofile.save()
-        
-        
-              
+            audiofile.save()       
 
 
 def filter_duration(info, *, incomplete):
